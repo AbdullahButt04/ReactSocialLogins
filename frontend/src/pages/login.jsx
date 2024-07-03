@@ -72,7 +72,7 @@ const Login = ({ setMessage, setShowMessage, setProfilePic }) => {
     onSuccess: async (tokenResponse) => {
       try {
         // Check if the scope includes access to Google Calendar
-        if (tokenResponse.scope.includes('https://www.googleapis.com/auth/calendar')) {
+        // if (tokenResponse.scope.includes('https://www.googleapis.com/auth/calendar')) {
           // Access to Google Calendar is granted
           const response = await axios.get(
             `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokenResponse.access_token}`
@@ -110,17 +110,17 @@ const Login = ({ setMessage, setShowMessage, setProfilePic }) => {
             localStorage.setItem("googleAccessToken", tokenResponse.access_token);
             navigate("/cabinet");
           }
-        } else {
-          // Access to Google Calendar is not granted
-          setShowMessage(true);
-          setMessage("Access to Google Calendar is not granted.");
-        }
+        // } else {
+        //   // Access to Google Calendar is not granted
+        //   setShowMessage(true);
+        //   setMessage("Access to Google Calendar is not granted.");
+        // }
       } catch (err) {
         setShowMessage(true);
         setMessage("Failed to login. Try again.");
       }
     },
-    scope: "https://www.googleapis.com/auth/calendar"
+    // scope: "https://www.googleapis.com/auth/calendar"
   });
 
   //{/* ------------------------------------ LOGIN USING FACEBOOK ------------------------------------------------------ */}
